@@ -9,10 +9,10 @@ Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/cli
 
 ### Team members
 
-* František Hecl (responsible for ...)
-* Filip Rákos (responsible for ...)
-* Marek Smolinský (responsible for ...)
-* Kamil Soukup (responsible for ...)
+* František Hecl (responsible for programming and testing)
+* Filip Rákos (responsible for programming and testing)
+* Marek Smolinský (responsible for leading our team)
+* Kamil Soukup (responsible for programming and testing)
 
 ## Hardware description
 
@@ -28,6 +28,7 @@ Describe how to use the application. Add photos or videos of your application.
 
 ## References and tools
 
-1. Put here the references and online tools you used.
-2. ...
+1. [ADC from GitHub of Tomas Fryza](https://github.com/tomas-fryza/avr-course/tree/master/archive/labx-adc)
+2. [Datasheet of ATmega328p](https://www.microchip.com/en-us/product/ATmega328p)
+3. [OLED with humidity sensor from GitHub of Tomas Fryza](https://github.com/tomas-fryza/avr-course/tree/master/solutions/lab6-i2c-sensor-oled)
 

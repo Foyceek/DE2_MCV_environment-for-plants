@@ -17,6 +17,19 @@ Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/cli
 ## Hardware description
 
 Describe your implementation and include block or circuit diagram(s).
+![image](https://github.com/user-attachments/assets/920e9da3-cd24-4cf3-a0df-5ade5083d01e)
+
+In this project, we used following resources:
+* Source of 12 VDC
+* Light emiting diode (LED)
+* NPN transistor
+* I2C OLED display 1.3"
+* I2C temperature and moisture sensor
+* Capacitive soil moisture sensor
+* Fan
+* Photocell
+* Resistor 200 Ohm
+
 
 ## Software description
 
@@ -31,4 +44,5 @@ Describe how to use the application. Add photos or videos of your application.
 1. [ADC from GitHub of Tomas Fryza](https://github.com/tomas-fryza/avr-course/tree/master/archive/labx-adc)
 2. [Datasheet of ATmega328p](https://www.microchip.com/en-us/product/ATmega328p)
 3. [OLED with humidity sensor from GitHub of Tomas Fryza](https://github.com/tomas-fryza/avr-course/tree/master/solutions/lab6-i2c-sensor-oled)
+4. [Cirkit Designer IDE](https://app.cirkitdesigner.com/)
 

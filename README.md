@@ -35,6 +35,10 @@ In this project, we used following resources:
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
 
+![Snímek obrazovky 2024-12-04 175832](https://github.com/user-attachments/assets/0a1538ac-2a28-4376-aba4-c1dffa8382f1)
+![Snímek obrazovky 2024-12-04 180738](https://github.com/user-attachments/assets/c8d589ad-aca9-4af2-b3a3-182ff79c5a48)
+
+
 ## Instructions and photos
 
 Describe how to use the application. Add photos or videos of your application.

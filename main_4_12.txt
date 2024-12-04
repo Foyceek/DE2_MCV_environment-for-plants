@@ -1,0 +1,180 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include "timer.h"
+#include "uart.h"
+#include <stdio.h>
+#include "twi.h"
+#include "oled.h"
+
+// -- Defines --------------------------------------------------------
+#define DHT_ADR 0x5c
+#define DHT_HUM_MEM 0
+#define DHT_TEMP_MEM 2
+#define XTAL_CPU 16000000UL
+#define BAUD_RATE 115200
+
+// Editable thresholds for analog value
+#define ADC_MIN 0
+#define ADC_MAX 500
+
+// -- Global variables -----------------------------------------------
+volatile uint8_t flag_update_oled = 0;
+volatile uint8_t dht12_values[5];
+
+// -- Function definitions -------------------------------------------
+void oled_setup(void)
+{
+    oled_init(OLED_DISP_ON);
+    oled_clrscr();
+    oled_charMode(DOUBLESIZE);
+    oled_puts("OLED disp.");
+    oled_charMode(NORMALSIZE);
+    oled_gotoxy(0, 2);
+    oled_puts("128x64, SH1106");
+    oled_drawLine(0, 25, 120, 25, WHITE);
+    oled_gotoxy(0, 4);
+    oled_puts("AVR course, Brno");
+    oled_gotoxy(0, 6);
+    oled_puts("Temperature [C]:");
+    oled_gotoxy(0, 7);
+    oled_puts("Humidity    [\%]:");
+    oled_display();
+}
+
+void timer1_init(void)
+{
+    TIM1_ovf_1sec();
+    TIM1_ovf_enable();
+}
+
+void uart_setup(void)
+{
+    uart_init(UART_BAUD_SELECT(BAUD_RATE, XTAL_CPU));
+}
+
+void adc_init(void)
+{
+    ADMUX = (1 << REFS0);                 // Reference voltage = AVcc
+    ADCSRA = (1 << ADEN) | (1 << ADPS2);  // Enable ADC, prescaler = 16
+}
+
+uint16_t adc_read(void)
+{
+    ADCSRA |= (1 << ADSC);                // Start ADC conversion
+    while (ADCSRA & (1 << ADSC)) ;        // Wait for conversion to complete
+    return ADC;                           // Return ADC value
+}
+
+void pwm_init(void)
+{
+    // Configure PD3 as output
+    DDRD |= (1 << PD3);
+
+    // Configure Timer2 for Fast PWM mode
+    TCCR2A = (1 << WGM20) | (1 << WGM21) | (1 << COM2B1); // Fast PWM, clear OC2B on match
+    TCCR2B = (1 << CS21);                                // Prescaler = 8
+}
+
+void set_led_brightness(uint16_t adc_value)
+{
+    uint8_t duty_cycle;
+
+    // Ensure the ADC value is within the expected range
+    if (adc_value >= ADC_MAX)
+    {
+        duty_cycle = 0; // Minimum brightness
+    }
+    else if (adc_value <= ADC_MIN)
+    {
+        duty_cycle = 255; // Maximum brightness
+    }
+    else
+    {
+        // Corrected mapping: Map ADC value from range [ADC_MIN, ADC_MAX] to [255, 0]
+        duty_cycle = (adc_value * 255) / (ADC_MAX); // Linear mapping
+    }
+
+    OCR2B = duty_cycle; // Update PWM duty cycle
+}
+
+void print_analog_value(uint16_t adc_value)
+{
+    uint8_t duty_cycle;
+
+    // Calculate duty cycle based on ADC value
+    if (adc_value >= ADC_MAX)
+    {
+        duty_cycle = 0; // Minimum brightness
+    }
+    else if (adc_value <= ADC_MIN)
+    {
+        duty_cycle = 255; // Maximum brightness
+    }
+    else
+    {
+        duty_cycle = (adc_value * 255) / (ADC_MAX); // Corrected linear mapping
+    }
+
+    // Print ADC value and duty cycle to UART
+    char buffer[32];
+    sprintf(buffer, "A0 Value: %u, Duty Cycle: %u\n", adc_value, duty_cycle);
+    uart_puts(buffer);
+}
+
+/*
+ * Function: Main function where the program execution begins
+ */
+int main(void)
+{
+    char oled_msg[5];
+
+    uart_setup();
+    adc_init();
+    pwm_init();
+    twi_init();
+    oled_setup();
+    timer1_init();
+    sei();
+
+    // Infinite loop
+    while (1)
+    {
+        if (flag_update_oled == 1)
+        {
+            oled_gotoxy(17, 6);
+            oled_puts("    ");
+            oled_gotoxy(17, 6);
+            sprintf(oled_msg, "%u.%u", dht12_values[2], dht12_values[3]);
+            oled_puts(oled_msg);
+
+            oled_gotoxy(17, 7);
+            oled_puts("    ");
+            oled_gotoxy(17, 7);
+            sprintf(oled_msg, "%u.%u", dht12_values[0], dht12_values[1]);
+            oled_puts(oled_msg);
+
+            oled_display();
+            flag_update_oled = 0;
+
+            uint16_t adc_value = adc_read();
+            set_led_brightness(adc_value);
+            print_analog_value(adc_value);
+        }
+    }
+
+    return 0;
+}
+
+// -- Interrupt service routines -------------------------------------
+ISR(TIMER1_OVF_vect)
+{
+    static uint8_t n_ovfs = 0;
+
+    n_ovfs++;
+    if (n_ovfs >= 1)
+    {
+        n_ovfs = 0;
+        twi_readfrom_mem_into(DHT_ADR, DHT_HUM_MEM, dht12_values, 5);
+        flag_update_oled = 1;
+    }
+}

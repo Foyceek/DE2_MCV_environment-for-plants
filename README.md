@@ -36,7 +36,7 @@ In this project, we used following resources:
 Put flowchats/state diagrams of your algorithm(s) and direct links to source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
 
 Applications state diagram
-![StavovyDiagram drawio (2)](https://github.com/user-attachments/assets/ab8678ba-3e21-40b5-a05f-f3b8f2844849)
+![StavovyDiagram drawio (3)](https://github.com/user-attachments/assets/37ba01d4-3370-4fd0-b595-e0f5e3dbbd7d)
 
 
 
@@ -50,5 +50,5 @@ Describe how to use the application. Add photos or videos of your application.
 2. [Datasheet of ATmega328p](https://www.microchip.com/en-us/product/ATmega328p)
 3. [OLED with humidity sensor from GitHub of Tomas Fryza](https://github.com/tomas-fryza/avr-course/tree/master/solutions/lab6-i2c-sensor-oled)
 4. [Cirkit Designer IDE](https://app.cirkitdesigner.com/)
-5. [Draw.io]([[https://www.draw.io))
+5. [Draw.io](https://app.diagrams.net)
 

@@ -10,9 +10,9 @@ Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/cli
 ### Team members
 
 * František Hecl (responsible for programming and testing)
-* Filip Rákos (responsible for programming and testing)
-* Marek Smolinský (responsible for leading our team)
-* Kamil Soukup (responsible for programming and testing)
+* Filip Rákos (responsible for programming and documentation)
+* Marek Smolinský (responsible for programing and state diagrams)
+* Kamil Soukup (responsible for programming, testing and GitHub)
 
 ## Hardware description
 
@@ -49,4 +49,5 @@ Describe how to use the application. Add photos or videos of your application.
 2. [Datasheet of ATmega328p](https://www.microchip.com/en-us/product/ATmega328p)
 3. [OLED with humidity sensor from GitHub of Tomas Fryza](https://github.com/tomas-fryza/avr-course/tree/master/solutions/lab6-i2c-sensor-oled)
 4. [Cirkit Designer IDE](https://app.cirkitdesigner.com/)
+5. [SmartDraw](https://www.smartdraw.com)
 

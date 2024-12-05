@@ -21,15 +21,18 @@ Describe your implementation and include block or circuit diagram(s).
 
 In this project, we used following resources:
 * Source of 12 VDC
-* Light emiting diode (LED)
+* Light emiting diode(s) (LED)
 * NPN transistor
 * I2C OLED display 1.3"
 * I2C temperature and moisture sensor
 * Capacitive soil moisture sensor
 * Fan
-* Photocell
+* Light-dependent resistor (fotorezistor)
 * Resistor 200 Ohm
 
+Light-dependent resistor regulates LEDs using PWN regulated by ADC of the Arduino depending on the lighting.
+On the I2C bus, there are OLED display and temperature / moisture sensor. On the OLED are displayed information about temperature, lighting, air moisture and soil moisture. Capacitive soil moisture sensor is another AD input (A1).
+NPN transistor is used as a switch to turn on / off fan dependending on moisture and temperature inside the terrarium. 12 VDC source is to power the fan. 
 
 ## Software description
 

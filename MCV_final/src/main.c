@@ -124,7 +124,7 @@ ISR(ADC_vect)
     } else if (adc_value >= adc_max) {
         last_pwm_duty = pwm_min;  // Min brightness for max input
     } else {
-        // Calculate scaled PWM duty using precise arithmetic
+        // Calculate scaled PWM duty
         last_pwm_duty = pwm_max - ((uint32_t)(adc_value - adc_min) * (pwm_max - pwm_min) / (adc_max - adc_min));
     }
 
@@ -141,7 +141,7 @@ ISR(ADC_vect)
 
 void display_brightness(void) {
     char string[5];
-    uint8_t brightness = (uint8_t)((last_pwm_duty * 100UL) / 255);
+    uint8_t brightness = (uint8_t)((last_pwm_duty * 100) / 255);
 
     oled_gotoxy(14, 5);
     oled_puts("    ");

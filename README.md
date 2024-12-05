@@ -38,6 +38,12 @@ NPN transistor is used as a switch to turn on / off fan dependending on moisture
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
 
+[src](https://github.com/Foyceek/DE2_MCV_environment-for-plants/blob/main/MCV_final/src/main.c)
+
+[lib](https://github.com/Foyceek/DE2_MCV_environment-for-plants/blob/main/MCV_final/lib)
+
+[include](https://github.com/Foyceek/DE2_MCV_environment-for-plants/blob/main/MCV_final/include)
+
 Applications state diagram
 ![StavovyDiagram drawio (3)](https://github.com/user-attachments/assets/37ba01d4-3370-4fd0-b595-e0f5e3dbbd7d)
 

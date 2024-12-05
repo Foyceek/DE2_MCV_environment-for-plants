@@ -46,6 +46,9 @@ Applications state diagram
 ## Instructions and photos
 
 Describe how to use the application. Add photos or videos of your application.
+[![Introduction video](https://img.youtube.com/vi/wHYZuikPPC8/0.jpg)](https://youtu.be/wHYZuikPPC8)
+
+![D0499218-5FA2-426F-8830-B93193CE4320_1_105_c](https://github.com/user-attachments/assets/73d76eb8-c1ae-4b8d-bfed-63e07939548f)
 
 ## References and tools
 

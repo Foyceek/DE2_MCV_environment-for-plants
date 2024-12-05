@@ -30,8 +30,8 @@ In this project, we used following resources:
 * Light-dependent resistor (fotorezistor)
 * Resistor 200 Ohm
 
-Light-dependent resistor regulates LEDs using PWN regulated by ADC of the Arduino depending on the lighting.
-On the I2C bus, there are OLED display and temperature / moisture sensor. On the OLED are displayed information about temperature, lighting, air moisture and soil moisture. Capacitive soil moisture sensor is another AD input (A1).
+Light-dependent resistor regulates LEDs using PWN regulated by ADC of the Arduino depending on the lighting.\
+On the I2C bus, there are OLED display and temperature / moisture sensor. On the OLED are displayed information about temperature, lighting, air moisture and soil moisture. Capacitive soil moisture sensor is another AD input (A1).\
 NPN transistor is used as a switch to turn on / off fan dependending on moisture and temperature inside the terrarium. 12 VDC source is to power the fan. 
 
 ## Software description

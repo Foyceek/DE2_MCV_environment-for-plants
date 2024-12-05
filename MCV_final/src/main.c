@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <gpio.h>
 
-#define F_CPU 16000000UL  // Define the clock frequency
+#define F_CPU 16000000  // Define the clock frequency
 
 #define DHT_ADR 0x5c
 #define DHT_HUM_MEM 0
